@@ -3,7 +3,8 @@ import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
 import Heading from '@tiptap/extension-heading'
 import Link from '@tiptap/extension-link'
-import Image from '@tiptap/extension-image'
+import { ResizableImageExtension } from 'tiptap-extension-resize-image'
+import 'tiptap-extension-resize-image/styles.css'
 import EquationExtension from './EquationExtension'
 import VideoExtension from './VideoExtension'
 import TextAlign from '@tiptap/extension-text-align'
@@ -40,7 +41,7 @@ const Toolbar = ({ editor, allowVideo = false }) => {
       if (!file) return
       const reader = new FileReader()
       reader.onload = (ev) => {
-        editor.chain().focus().setImage({ src: ev.target.result }).run()
+        editor.chain().focus().setResizableImage({ src: ev.target.result }).run()
       }
       reader.readAsDataURL(file)
     }
@@ -115,7 +116,7 @@ const BlockEditorInstance = ({ content, onChange, allowVideo = false }) => {
       Underline,
       Heading.configure({ levels: [1, 2, 3] }),
       Link.configure({ openOnClick: false }),
-      Image,
+      ResizableImageExtension,
       EquationExtension,
       VideoExtension,
       TextAlign.configure({ types: ['heading', 'paragraph'] })

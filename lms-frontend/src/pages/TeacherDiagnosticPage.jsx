@@ -3,9 +3,11 @@ import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
 import EquationExtension from '../components/editor/EquationExtension'
-import Image from '@tiptap/extension-image'
+import { ResizableImageExtension } from 'tiptap-extension-resize-image'
+import 'tiptap-extension-resize-image/styles.css'
 import PageLayout from '../components/PageLayout'
 import api from '../api/axios'
+import TextAlign from '@tiptap/extension-text-align'
 
 // Extracts plain text from TipTap JSON
 const extractText = (json) => {
@@ -21,7 +23,13 @@ const extractText = (json) => {
 // ─── Mini TipTap editor used inside question form ───────────────────────────
 const MiniEditor = ({ onChange, placeholder }) => {
   const editor = useEditor({
-    extensions: [StarterKit, Underline, EquationExtension, Image],
+    extensions: [
+      StarterKit,
+      Underline,
+      EquationExtension,
+      ResizableImageExtension,
+      TextAlign.configure({ types: ['heading', 'paragraph'] })
+    ],
     content: '',
     onUpdate: ({ editor }) => onChange(editor.getJSON())
   })
@@ -49,7 +57,7 @@ const MiniEditor = ({ onChange, placeholder }) => {
       if (!file) return
       const reader = new FileReader()
       reader.onload = (ev) => {
-        editor.chain().focus().setImage({ src: ev.target.result }).run()
+        editor.chain().focus().setResizableImage({ src: ev.target.result }).run()
       }
       reader.readAsDataURL(file)
     }
@@ -58,12 +66,17 @@ const MiniEditor = ({ onChange, placeholder }) => {
 
   return (
     <div style={{ border: '1px solid #ddd', borderRadius: 6, overflow: 'hidden' }}>
-      <div style={{ padding: 6, backgroundColor: '#f5f5f5', borderBottom: '1px solid #ddd' }}>
+      <div style={{ padding: 6, backgroundColor: '#f5f5f5', borderBottom: '1px solid #ddd', display: 'flex', flexWrap: 'wrap', gap: 2 }}>
         {btn('B', () => editor?.chain().focus().toggleBold().run(), editor?.isActive('bold'))}
         {btn('I', () => editor?.chain().focus().toggleItalic().run(), editor?.isActive('italic'))}
         {btn('U', () => editor?.chain().focus().toggleUnderline().run(), editor?.isActive('underline'))}
         {btn('∑', addEquation, false)}
         {btn('Image', addImage, false)}
+        <span style={{ marginLeft: 6, marginRight: 2, color: '#ccc' }}>|</span>
+        {btn('⬅', () => editor?.chain().focus().setTextAlign('left').run(), editor?.isActive({ textAlign: 'left' }))}
+        {btn('↔', () => editor?.chain().focus().setTextAlign('center').run(), editor?.isActive({ textAlign: 'center' }))}
+        {btn('➡', () => editor?.chain().focus().setTextAlign('right').run(), editor?.isActive({ textAlign: 'right' }))}
+        {btn('≡', () => editor?.chain().focus().setTextAlign('justify').run(), editor?.isActive({ textAlign: 'justify' }))}
       </div>
       <EditorContent editor={editor} style={{ padding: 8, minHeight: 60 }} />
     </div>

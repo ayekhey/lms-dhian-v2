@@ -5,7 +5,8 @@ import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
 import Heading from '@tiptap/extension-heading'
 import Link from '@tiptap/extension-link'
-import Image from '@tiptap/extension-image'
+import { ResizableImageExtension } from 'tiptap-extension-resize-image'
+import 'tiptap-extension-resize-image/styles.css'
 import EquationExtension from './EquationExtension'
 import VideoExtension from './VideoExtension'
 import katex from 'katex'
@@ -17,7 +18,7 @@ const extensions = [
   Underline,
   Heading.configure({ levels: [1, 2, 3] }),
   Link.configure({ openOnClick: true }),
-  Image,
+  ResizableImageExtension,
   EquationExtension,
   VideoExtension,
   TextAlign.configure({ types: ['heading', 'paragraph'] }),
