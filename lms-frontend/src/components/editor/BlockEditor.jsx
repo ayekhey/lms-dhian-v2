@@ -231,7 +231,7 @@ const QuizBlock = ({ block, onChange, onRemove }) => {
             onChange={(question) => onChange({ ...block, question })}
           />
         </div>
-        {['A', 'B', 'C', 'D', 'E'].map((letter, i) => (
+        {['Benar', 'Salah'].map((label, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginBottom: 10 }}>
             <input
               type="radio"
@@ -241,7 +241,7 @@ const QuizBlock = ({ block, onChange, onRemove }) => {
               style={{ marginTop: 14 }}
             />
             <div style={{ flex: 1 }}>
-              <label style={{ fontSize: 12, color: '#666' }}>Option {letter}</label>
+              <label style={{ fontSize: 12, color: '#666' }}>{label}</label>
               <BlockEditorInstance
                 content={block.options?.[i]}
                 onChange={(content) => updateOption(i, content)}
@@ -263,12 +263,15 @@ const AddBlockButton = ({ onAdd }) => {
     } else if (type === 'show_hide') {
       onAdd({ id, type: 'show_hide', label: 'Show more', tier: 'all', content: {} })
     } else if (type === 'quiz') {
-      onAdd({
-        id, type: 'quiz',
-        question: {},
-        options: [{}, {}, {}, {}, {}],
-        correctOption: 0
-      })
+        oonAdd({
+            id, type: 'quiz',
+            question: {},
+            options: [
+              { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Benar' }] }] },
+              { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Salah' }] }] }
+            ],
+            correctOption: 0
+        })
     }
   }
 

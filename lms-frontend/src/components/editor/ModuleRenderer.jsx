@@ -169,8 +169,8 @@ const QuizRenderer = ({ block }) => {
                 fontWeight: i === selected ? 600 : 400
               }}
             >
-              <span style={{ marginRight: 8, color: '#888', fontSize: 13 }}>
-                {['A', 'B', 'C', 'D', 'E'][i]}.
+              <span style={{ marginRight: 8, color: '#888', fontSize: 13, fontWeight: 600 }}>
+                {['Benar', 'Salah'][i]}.
               </span>
               {isValidContent(option)
                 ? <RichTextRenderer content={option} />
