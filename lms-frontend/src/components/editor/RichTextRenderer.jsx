@@ -11,7 +11,7 @@ import TextAlign from '@tiptap/extension-text-align'
 const extensions = [
   StarterKit,
   Underline,
-  ResizableImageExtension,
+  Image,
   EquationExtension,
   TextAlign.configure({ types: ['heading', 'paragraph'] }),
 ]

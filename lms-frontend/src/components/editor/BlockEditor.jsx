@@ -115,8 +115,8 @@ const BlockEditorInstance = ({ content, onChange, allowVideo = false }) => {
       Underline,
       Heading.configure({ levels: [1, 2, 3] }),
       Link.configure({ openOnClick: false }),
-      ResizableImageExtension,
       EquationExtension,
+      Image,
       VideoExtension,
       TextAlign.configure({ types: ['heading', 'paragraph'] })
     ],

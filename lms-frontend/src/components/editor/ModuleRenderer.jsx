@@ -17,7 +17,7 @@ const extensions = [
   Underline,
   Heading.configure({ levels: [1, 2, 3] }),
   Link.configure({ openOnClick: true }),
-  ResizableImageExtension,
+  Image,
   EquationExtension,
   VideoExtension,
   TextAlign.configure({ types: ['heading', 'paragraph'] }),

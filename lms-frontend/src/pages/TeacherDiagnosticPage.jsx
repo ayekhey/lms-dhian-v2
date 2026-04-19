@@ -26,7 +26,7 @@ const MiniEditor = ({ onChange, placeholder }) => {
       StarterKit,
       Underline,
       EquationExtension,
-      ResizableImageExtension,
+      Image,
       TextAlign.configure({ types: ['heading', 'paragraph'] })
     ],
     content: '',
