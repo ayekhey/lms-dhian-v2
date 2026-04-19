@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  TEACHER
+  STUDENT
+}
+
+model User {
+  id                String             @id @default(uuid())
+  name              String
+  email             String             @unique
+  passwordHash      String
+  role              Role
+  tier              Int?
+  diagnosticDone    Boolean            @default(false)
+  postTestDone      Boolean            @default(false)
+  createdAt         DateTime           @default(now())
+  modules           Module[]
+  postTestResults   PostTestResult[]
+  diagnosticResults DiagnosticResult[]
+}
+
+model Module {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  order       Int      @default(0)
+  createdById String
+  createdAt   DateTime @default(now())
+  createdBy   User     @relation(fields: [createdById], references: [id])
+  topics      Topic[]
+}
+
+model Topic {
+  id          String   @id @default(uuid())
+  moduleId    String
+  topicNumber Int
+  title       String
+  blocks      Json?
+  createdAt   DateTime @default(now())
+  module      Module   @relation(fields: [moduleId], references: [id])
+}
+
+model DiagnosticQuestion {
+  id            String   @id @default(uuid())
+  questionText  Json
+  options       Json[]
+  correctOption Int
+  createdAt     DateTime @default(now())
+}
+
+model DiagnosticResult {
+  id          String   @id @default(uuid())
+  studentId   String
+  score       Int
+  total       Int
+  tier        Int
+  answers     Json?
+  submittedAt DateTime @default(now())
+  student     User     @relation(fields: [studentId], references: [id])
+}
+
+model PostTestResult {
+  id          String   @id @default(uuid())
+  studentId   String
+  score       Int
+  maxScore    Int
+  answers     Json?
+  submittedAt DateTime @default(now())
+  student     User     @relation(fields: [studentId], references: [id])
+}
+
+model MediaContent {
+  id        String   @id @default(uuid())
+  content   Json?
+  updatedAt DateTime @updatedAt
+}
+
+model SystemConfig {
+  key   String @id
+  value String
+}
