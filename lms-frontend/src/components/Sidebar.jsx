@@ -33,7 +33,7 @@ const Sidebar = () => {
     }}>
       {/* App name */}
       <div style={{ padding: '0 24px 24px', fontWeight: 700, fontSize: 18 }}>
-        LMS Dhian
+        GYROSCOPE 361
       </div>
 
       {/* User info */}

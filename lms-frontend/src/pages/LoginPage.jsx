@@ -49,7 +49,7 @@ const LoginPage = () => {
             <span style={{ color: '#fff', fontSize: 24, fontWeight: 700 }}>L</span>
           </div>
           <h1 style={{ fontSize: 24, fontWeight: 700, color: '#1a1a2e', margin: 0 }}>
-            LMS Dhian
+            GYROSCOPE 361
           </h1>
           <p style={{ color: '#888', fontSize: 14, marginTop: 6 }}>
             Sign in to your account
@@ -153,8 +153,8 @@ const LoginPage = () => {
 
         {/* Footer */}
         <p style={{ textAlign: 'center', color: '#aaa', fontSize: 12, marginTop: 24 }}>
-          LMS Dhian © {new Date().getFullYear()}
-        </p>
+            GYROSCOPE 361 © {new Date().getFullYear()}
+          </p>
       </div>
     </div>
   )
