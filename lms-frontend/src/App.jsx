@@ -16,6 +16,7 @@ import TeacherModuleEditPage from './pages/TeacherModuleEditPage'
 import TeacherTopicEditPage from './pages/TeacherTopicEditPage'
 import TeacherMediaPage from './pages/TeacherMediaPage'
 import TeacherDiagnosticPage from './pages/TeacherDiagnosticPage'
+import TeacherDiagnosticEditPage from './pages/TeacherDiagnosticEditPage'
 import TeacherStudentPage from './pages/TeacherStudentPage'
 
 const App = () => {
@@ -62,6 +63,9 @@ const App = () => {
           } />
           <Route path="/teacher/diagnostic" element={
             <TeacherRoute><TeacherDiagnosticPage /></TeacherRoute>
+          } />
+          <Route path="/teacher/diagnostic/:id/edit" element={
+            <TeacherRoute><TeacherDiagnosticEditPage /></TeacherRoute>
           } />
           <Route path="/teacher/students" element={
             <TeacherRoute><TeacherStudentPage /></TeacherRoute>

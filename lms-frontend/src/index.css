@@ -24,3 +24,12 @@ input, textarea, select, button {
 .rich-text img { max-width: 100%; border-radius: 6px; }
 .rich-text strong { font-weight: 700; }
 .rich-text em { font-style: italic; }
+.rich-text img, .ProseMirror img {
+  max-width: 100%;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.ProseMirror img.ProseMirror-selectednode {
+  outline: 3px solid #3b3b5c;
+}
