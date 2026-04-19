@@ -263,7 +263,7 @@ const AddBlockButton = ({ onAdd }) => {
     } else if (type === 'show_hide') {
       onAdd({ id, type: 'show_hide', label: 'Show more', tier: 'all', content: {} })
     } else if (type === 'quiz') {
-        oonAdd({
+        onAdd({
             id, type: 'quiz',
             question: {},
             options: [
