@@ -196,13 +196,23 @@ const QuestionsTab = () => {
                 {' — '}{extractText(q.options?.[q.correctOption])}
               </div>
             </div>
-            <button onClick={() => handleDelete(q.id)} style={{
-              padding: '4px 12px', backgroundColor: '#c62828',
-              color: '#fff', border: 'none', borderRadius: 4, cursor: 'pointer', fontSize: 12,
-              marginLeft: 12, flexShrink: 0
-            }}>
-              Delete
-            </button>
+            <div style={{ display: 'flex', gap: 8, marginLeft: 12, flexShrink: 0 }}>
+              <button
+                onClick={() => window.location.href = `/teacher/diagnostic/${q.id}/edit`}
+                style={{
+                  padding: '4px 12px', backgroundColor: '#3b3b5c',
+                  color: '#fff', border: 'none', borderRadius: 4, cursor: 'pointer', fontSize: 12
+                }}
+              >
+                Edit
+              </button>
+              <button onClick={() => handleDelete(q.id)} style={{
+                padding: '4px 12px', backgroundColor: '#c62828',
+                color: '#fff', border: 'none', borderRadius: 4, cursor: 'pointer', fontSize: 12
+              }}>
+                Delete
+              </button>
+            </div>
           </div>
         </div>
       ))}

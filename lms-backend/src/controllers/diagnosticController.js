@@ -230,10 +230,26 @@ const exportResults = async (req, res) => {
   }
 }
 
+const updateQuestion = async (req, res) => {
+  const { id } = req.params
+  const { questionText, options, correctOption } = req.body
+
+  try {
+    const question = await prisma.diagnosticQuestion.update({
+      where: { id },
+      data: { questionText, options, correctOption }
+    })
+    res.json(question)
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' })
+  }
+}
+
 module.exports = {
   getQuestionsForStudent,
   getQuestionsForTeacher,
   createQuestion,
+  updateQuestion,
   deleteQuestion,
   submitDiagnostic,
   getConfigRoute,

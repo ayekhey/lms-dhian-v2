@@ -11,9 +11,11 @@ const {
   getConfigRoute,
   updateConfig,
   getResults,
-  exportResults
+  exportResults,
+  updateQuestion
 } = require('../controllers/diagnosticController')
 
+router.put('/questions/:id', auth, role('TEACHER'), updateQuestion)
 router.get('/questions', auth, role('STUDENT'), getQuestionsForStudent)
 router.get('/manage', auth, role('TEACHER'), getQuestionsForTeacher)
 router.post('/questions', auth, role('TEACHER'), createQuestion)
