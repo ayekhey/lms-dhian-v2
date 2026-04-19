@@ -6,6 +6,7 @@ import Link from '@tiptap/extension-link'
 import Image from '@tiptap/extension-image'
 import EquationExtension from './EquationExtension'
 import VideoExtension from './VideoExtension'
+import TextAlign from '@tiptap/extension-text-align'
 
 // ─── Toolbar ───────────────────────────────────────────────────────────────
 const Toolbar = ({ editor, allowVideo = false }) => {
@@ -94,6 +95,14 @@ const Toolbar = ({ editor, allowVideo = false }) => {
       {btn('Image', addImage, false)}
       {btn('∑ Equation', addEquation, false)}
       {allowVideo && btn('▶ Video', addVideo, false)}
+      <span style={{ marginLeft: 8, marginRight: 4, color: '#ccc' }}>|</span>
+      {btn('⬅', () => editor.chain().focus().setTextAlign('left').run(), editor.isActive({ textAlign: 'left' }))}
+      {btn('↔', () => editor.chain().focus().setTextAlign('center').run(), editor.isActive({ textAlign: 'center' }))}
+      {btn('➡', () => editor.chain().focus().setTextAlign('right').run(), editor.isActive({ textAlign: 'right' }))}
+      {btn('≡', () => editor.chain().focus().setTextAlign('justify').run(), editor.isActive({ textAlign: 'justify' }))}
+      <span style={{ marginLeft: 8, marginRight: 4, color: '#ccc' }}>|</span>
+      {btn('→|', () => editor.chain().focus().sinkListItem('listItem').run(), false)}
+      {btn('|←', () => editor.chain().focus().liftListItem('listItem').run(), false)}
     </div>
   )
 }
@@ -108,7 +117,8 @@ const BlockEditorInstance = ({ content, onChange, allowVideo = false }) => {
       Link.configure({ openOnClick: false }),
       Image,
       EquationExtension,
-      VideoExtension
+      VideoExtension,
+      TextAlign.configure({ types: ['heading', 'paragraph'] })
     ],
     content: content || { type: 'doc', content: [] },
     onUpdate: ({ editor }) => {

@@ -7,6 +7,7 @@ import Link from '@tiptap/extension-link'
 import Image from '@tiptap/extension-image'
 import EquationExtension from '../components/editor/EquationExtension'
 import VideoExtension from '../components/editor/VideoExtension'
+import TextAlign from '@tiptap/extension-text-align'
 import PageLayout from '../components/PageLayout'
 import api from '../api/axios'
 
@@ -22,7 +23,8 @@ const TeacherMediaPage = () => {
       Link.configure({ openOnClick: false }),
       Image,
       EquationExtension,
-      VideoExtension
+      VideoExtension,
+      TextAlign.configure({ types: ['heading', 'paragraph'] }),
     ],
     content: ''
   })
@@ -129,6 +131,14 @@ const TeacherMediaPage = () => {
           {btn('Image', addImage, false)}
           {btn('∑ Equation', addEquation, false)}
           {btn('▶ Video', addVideo, false)}
+          <span style={{ marginLeft: 8, marginRight: 4, color: '#ccc' }}>|</span>
+          {btn('⬅', () => editor?.chain().focus().setTextAlign('left').run(), editor?.isActive({ textAlign: 'left' }))}
+          {btn('↔', () => editor?.chain().focus().setTextAlign('center').run(), editor?.isActive({ textAlign: 'center' }))}
+          {btn('➡', () => editor?.chain().focus().setTextAlign('right').run(), editor?.isActive({ textAlign: 'right' }))}
+          {btn('≡', () => editor?.chain().focus().setTextAlign('justify').run(), editor?.isActive({ textAlign: 'justify' }))}
+          <span style={{ marginLeft: 8, marginRight: 4, color: '#ccc' }}>|</span>
+          {btn('→|', () => editor?.chain().focus().sinkListItem('listItem').run(), false)}
+          {btn('|←', () => editor?.chain().focus().liftListItem('listItem').run(), false)}
         </div>
 
         {/* Editor */}

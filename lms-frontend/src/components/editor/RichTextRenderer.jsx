@@ -6,12 +6,14 @@ import Image from '@tiptap/extension-image'
 import EquationExtension from './EquationExtension'
 import katex from 'katex'
 import 'katex/dist/katex.min.css'
+import TextAlign from '@tiptap/extension-text-align'
 
 const extensions = [
   StarterKit,
   Underline,
   Image,
-  EquationExtension
+  EquationExtension,
+  TextAlign.configure({ types: ['heading', 'paragraph'] }),
 ]
 
 const isValidContent = (content) => {

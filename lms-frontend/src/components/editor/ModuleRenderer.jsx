@@ -10,6 +10,7 @@ import EquationExtension from './EquationExtension'
 import VideoExtension from './VideoExtension'
 import katex from 'katex'
 import 'katex/dist/katex.min.css'
+import TextAlign from '@tiptap/extension-text-align'
 
 const extensions = [
   StarterKit,
@@ -18,7 +19,8 @@ const extensions = [
   Link.configure({ openOnClick: true }),
   Image,
   EquationExtension,
-  VideoExtension
+  VideoExtension,
+  TextAlign.configure({ types: ['heading', 'paragraph'] }),
 ]
 
 const isValidContent = (content) => {
