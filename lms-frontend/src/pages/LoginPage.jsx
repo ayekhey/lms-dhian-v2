@@ -41,12 +41,12 @@ const LoginPage = () => {
 
         {/* Logo / App name */}
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-            width: 56, height: 56, borderRadius: 16,
-            backgroundColor: '#3b3b5c', marginBottom: 16
-          }}>
-            <span style={{ color: '#fff', fontSize: 24, fontWeight: 700 }}>L</span>
+          <div style={{ marginBottom: 16 }}>
+            <img
+              src="/favicon.png"
+              alt="GYROSCOPE 361"
+              style={{ width: 56, height: 56, borderRadius: 16, objectFit: 'cover' }}
+            />
           </div>
           <h1 style={{ fontSize: 24, fontWeight: 700, color: '#1a1a2e', margin: 0 }}>
             GYROSCOPE 361
