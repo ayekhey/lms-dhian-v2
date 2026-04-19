@@ -41,11 +41,11 @@ const LoginPage = () => {
 
         {/* Logo / App name */}
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
-          <div style={{ marginBottom: 16 }}>
+          <div style={{ marginBottom: 0 }}>
             <img
               src="/favicon.png"
               alt="GYROSCOPE 361"
-              style={{ width: 56, height: 56, borderRadius: 16, objectFit: 'cover' }}
+              style={{ width: 200, height: 200, borderRadius: 16, objectFit: 'cover' }}
             />
           </div>
           <h1 style={{ fontSize: 24, fontWeight: 700, color: '#1a1a2e', margin: 0 }}>
