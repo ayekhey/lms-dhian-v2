@@ -12,6 +12,7 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setError('')
     setLoading(true)
     try {
       const user = await login(email, password)
@@ -21,11 +22,10 @@ const LoginPage = () => {
         navigate(user.diagnosticDone ? '/student/dashboard' : '/diagnostic')
       }
     } catch {
+      setError('Invalid email or password')
+    } finally {
       setLoading(false)
-      setError('invalid')
-      return
     }
-    setLoading(false)
   }
 
   return (
@@ -77,7 +77,7 @@ const LoginPage = () => {
               <input
                 type="email"
                 value={email}
-                onChange={e => { setEmail(e.target.value); setError('') }}
+                onChange={e => setEmail(e.target.value)}
                 required
                 placeholder="you@example.com"
                 style={{
@@ -104,7 +104,7 @@ const LoginPage = () => {
               <input
                 type="password"
                 value={password}
-                  onChange={e => { setPassword(e.target.value); setError('') }}
+                onChange={e => setPassword(e.target.value)}
                 required
                 placeholder="••••••••"
                 style={{
