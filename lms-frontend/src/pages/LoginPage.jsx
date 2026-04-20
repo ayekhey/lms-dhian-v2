@@ -12,7 +12,6 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    // setError('')
     setLoading(true)
     try {
       const user = await login(email, password)
@@ -22,10 +21,11 @@ const LoginPage = () => {
         navigate(user.diagnosticDone ? '/student/dashboard' : '/diagnostic')
       }
     } catch {
-      setError('Invalid email or password')
-    } finally {
       setLoading(false)
+      setError('invalid')
+      return
     }
+    setLoading(false)
   }
 
   return (
