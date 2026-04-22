@@ -2,22 +2,27 @@ import { Node, mergeAttributes } from '@tiptap/core'
 
 const EquationExtension = Node.create({
   name: 'equation',
-  group: 'block',
+  group: 'inline',
+  inline: true,
   atom: true,
 
   addAttributes() {
     return {
       latex: { default: '' },
-      display: { default: true }
+      display: { default: false }
     }
   },
 
   parseHTML() {
-    return [{ tag: 'div[data-equation]' }]
+    return [{ tag: 'span[data-equation]' }]
   },
 
-  renderHTML({ HTMLAttributes }) {
-    return ['div', mergeAttributes(HTMLAttributes, { 'data-equation': '' })]
+  renderHTML({ node, HTMLAttributes }) {
+    return ['span', mergeAttributes(HTMLAttributes, {
+      'data-equation': '',
+      'latex': node.attrs.latex,
+      'data-display': node.attrs.display
+    })]
   }
 })
 

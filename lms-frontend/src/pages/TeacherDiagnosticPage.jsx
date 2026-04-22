@@ -44,7 +44,10 @@ const MiniEditor = ({ onChange, placeholder }) => {
 
   const addEquation = () => {
     const latex = prompt('Enter LaTeX:')
-    if (latex) editor.chain().focus().insertContent({ type: 'equation', attrs: { latex, display: false } }).run()
+    if (latex) editor.chain().focus().insertContent({
+      type: 'equation',
+      attrs: { latex, display: false }
+    }).run()
   }
 
   const addImage = () => {

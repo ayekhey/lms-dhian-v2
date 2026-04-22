@@ -62,8 +62,9 @@ const RichTextRenderer = ({ content }) => {
 
     ref.current.querySelectorAll('[data-equation]').forEach(el => {
       const latex = el.getAttribute('latex') || ''
+      const display = el.getAttribute('data-display') === 'true'
       try {
-        katex.render(latex, el, { displayMode: true, throwOnError: false })
+        katex.render(latex, el, { displayMode: display, throwOnError: false })
       } catch {
         el.textContent = latex
       }

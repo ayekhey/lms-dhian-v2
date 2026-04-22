@@ -49,12 +49,12 @@ const Toolbar = ({ editor, allowVideo = false }) => {
 
   const addEquation = () => {
     const latex = prompt('Enter LaTeX equation:')
-    if (latex) {
-      editor.chain().focus().insertContent({
-        type: 'equation',
-        attrs: { latex, display: true }
-      }).run()
-    }
+    if (!latex) return
+    const mode = confirm('Display as block? (OK = block, Cancel = inline)')
+    editor.chain().focus().insertContent({
+      type: 'equation',
+      attrs: { latex, display: mode }
+    }).run()
   }
 
   const addVideo = () => {
