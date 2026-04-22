@@ -3,7 +3,9 @@ const prisma = require('../prismaClient')
 const getQuestionsForStudent = async (req, res) => {
   try {
     const config = await getConfig()
-    let questions = await prisma.diagnosticQuestion.findMany()
+    let questions = await prisma.diagnosticQuestion.findMany({
+      orderBy: { createdAt: 'asc' }
+    })
 
     if (config.randomize) {
       questions = questions.sort(() => Math.random() - 0.5)
@@ -23,7 +25,9 @@ const submitPostTest = async (req, res) => {
   const { answers } = req.body
 
   try {
-    const questions = await prisma.diagnosticQuestion.findMany()
+    const questions = await prisma.diagnosticQuestion.findMany({
+      orderBy: { createdAt: 'asc' }
+    })
     const config = await getConfig()
     const total = questions.length
 

@@ -12,7 +12,7 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setError('')
+    // setError('')
     setLoading(true)
     try {
       const user = await login(email, password)
@@ -77,7 +77,7 @@ const LoginPage = () => {
               <input
                 type="email"
                 value={email}
-                onChange={e => setEmail(e.target.value)}
+                onChange={e => { setEmail(e.target.value); setError('') }}
                 required
                 placeholder="you@example.com"
                 style={{
@@ -104,7 +104,7 @@ const LoginPage = () => {
               <input
                 type="password"
                 value={password}
-                onChange={e => setPassword(e.target.value)}
+                onChange={e => { setPassword(e.target.value); setError('') }}
                 required
                 placeholder="••••••••"
                 style={{
