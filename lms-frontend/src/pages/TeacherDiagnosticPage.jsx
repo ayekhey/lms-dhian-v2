@@ -20,7 +20,8 @@ const extractText = (json) => {
 }
 
 // ─── Mini TipTap editor used inside question form ───────────────────────────
-const MiniEditor = ({ onChange, placeholder }) => {
+const MiniEditor = ({ initialContent, onChange }) => {
+  const [showImageModal, setShowImageModal] = useState(false)
   const editor = useEditor({
     extensions: [
       StarterKit,

@@ -4,14 +4,17 @@ import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
 import Heading from '@tiptap/extension-heading'
 import Link from '@tiptap/extension-link'
-import Image from '@tiptap/extension-image'
+// import Image from '@tiptap/extension-image'
 import EquationExtension from '../components/editor/EquationExtension'
 import VideoExtension from '../components/editor/VideoExtension'
 import TextAlign from '@tiptap/extension-text-align'
 import PageLayout from '../components/PageLayout'
 import api from '../api/axios'
+import ImageUploadModal from '../components/editor/ImageUploadModal'
+import CustomImageExtension from '../components/editor/CustomImageExtension'
 
 const TeacherMediaPage = () => {
+  const [showImageModal, setShowImageModal] = useState(false)
   const [saved, setSaved] = useState(false)
   const [loaded, setLoaded] = useState(false)
 
@@ -63,20 +66,28 @@ const TeacherMediaPage = () => {
     </button>
   )
 
-  const addImage = () => {
-    const input = document.createElement('input')
-    input.type = 'file'
-    input.accept = 'image/*'
-    input.onchange = (e) => {
-      const file = e.target.files[0]
-      if (!file) return
-      const reader = new FileReader()
-      reader.onload = (ev) => {
-        editor.chain().focus().setImage({ src: ev.target.result }).run()
-      }
-      reader.readAsDataURL(file)
-    }
-    input.click()
+  // const addImage = () => {
+  //   const input = document.createElement('input')
+  //   input.type = 'file'
+  //   input.accept = 'image/*'
+  //   input.onchange = (e) => {
+  //     const file = e.target.files[0]
+  //     if (!file) return
+  //     const reader = new FileReader()
+  //     reader.onload = (ev) => {
+  //       editor.chain().focus().setImage({ src: ev.target.result }).run()
+  //     }
+  //     reader.readAsDataURL(file)
+  //   }
+  //   input.click()
+  // }
+
+  const handleImageInsert = ({ src, width, align }) => {
+    editor.chain().focus().insertContent({
+      type: 'customImage',
+      attrs: { src, width, align }
+    }).run()
+    setShowImageModal(false)
   }
 
   const addEquation = () => {
@@ -128,7 +139,9 @@ const TeacherMediaPage = () => {
           {btn('• List', () => editor?.chain().focus().toggleBulletList().run(), editor?.isActive('bulletList'))}
           {btn('1. List', () => editor?.chain().focus().toggleOrderedList().run(), editor?.isActive('orderedList'))}
           {btn('Link', addLink, editor?.isActive('link'))}
-          {btn('Image', addImage, false)}
+          {/* {btn('Image', addImage, false)} */}
+          {btn('Image', () => setShowImageModal(true), false)}
+          {showImageModal && <ImageUploadModal onInsert={handleImageInsert} onClose={() => setShowImageModal(false)} />}
           {btn('∑ Equation', addEquation, false)}
           {btn('▶ Video', addVideo, false)}
           <span style={{ marginLeft: 8, marginRight: 4, color: '#ccc' }}>|</span>

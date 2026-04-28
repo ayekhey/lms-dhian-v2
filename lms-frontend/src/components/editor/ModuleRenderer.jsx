@@ -5,19 +5,22 @@ import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
 import Heading from '@tiptap/extension-heading'
 import Link from '@tiptap/extension-link'
-import Image from '@tiptap/extension-image'
+// import Image from '@tiptap/extension-image'
+import CustomImageExtension from './CustomImageExtension'
 import EquationExtension from './EquationExtension'
 import VideoExtension from './VideoExtension'
 import katex from 'katex'
 import 'katex/dist/katex.min.css'
 import TextAlign from '@tiptap/extension-text-align'
 
+
 const extensions = [
   StarterKit,
   Underline,
   Heading.configure({ levels: [1, 2, 3] }),
   Link.configure({ openOnClick: true }),
-  Image,
+  // Image,
+  CustomImageExtension,
   EquationExtension,
   VideoExtension,
   TextAlign.configure({ types: ['heading', 'paragraph'] }),

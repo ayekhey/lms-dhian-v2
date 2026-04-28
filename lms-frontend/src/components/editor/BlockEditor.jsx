@@ -3,13 +3,17 @@ import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
 import Heading from '@tiptap/extension-heading'
 import Link from '@tiptap/extension-link'
-import Image from '@tiptap/extension-image'
+// import Image from '@tiptap/extension-image'
 import EquationExtension from './EquationExtension'
 import VideoExtension from './VideoExtension'
 import TextAlign from '@tiptap/extension-text-align'
+import { useState } from 'react'
+import ImageUploadModal from './ImageUploadModal'
+import CustomImageExtension from './CustomImageExtension'
 
 // ─── Toolbar ───────────────────────────────────────────────────────────────
 const Toolbar = ({ editor, allowVideo = false }) => {
+  const [showImageModal, setShowImageModal] = useState(false)
   if (!editor) return null
 
   const btn = (label, action, active) => (
@@ -31,20 +35,28 @@ const Toolbar = ({ editor, allowVideo = false }) => {
     </button>
   )
 
-  const addImage = () => {
-    const input = document.createElement('input')
-    input.type = 'file'
-    input.accept = 'image/*'
-    input.onchange = (e) => {
-      const file = e.target.files[0]
-      if (!file) return
-      const reader = new FileReader()
-      reader.onload = (ev) => {
-        editor.chain().focus().setImage({ src: ev.target.result }).run()
-      }
-      reader.readAsDataURL(file)
-    }
-    input.click()
+  // const addImage = () => {
+  //   const input = document.createElement('input')
+  //   input.type = 'file'
+  //   input.accept = 'image/*'
+  //   input.onchange = (e) => {
+  //     const file = e.target.files[0]
+  //     if (!file) return
+  //     const reader = new FileReader()
+  //     reader.onload = (ev) => {
+  //       editor.chain().focus().setImage({ src: ev.target.result }).run()
+  //     }
+  //     reader.readAsDataURL(file)
+  //   }
+  //   input.click()
+  // }
+
+  const handleImageInsert = ({ src, width, align }) => {
+    editor.chain().focus().insertContent({
+      type: 'customImage',
+      attrs: { src, width, align }
+    }).run()
+    setShowImageModal(false)
   }
 
   const addEquation = () => {
@@ -92,7 +104,9 @@ const Toolbar = ({ editor, allowVideo = false }) => {
       {btn('• List', () => editor.chain().focus().toggleBulletList().run(), editor.isActive('bulletList'))}
       {btn('1. List', () => editor.chain().focus().toggleOrderedList().run(), editor.isActive('orderedList'))}
       {btn('Link', addLink, editor.isActive('link'))}
-      {btn('Image', addImage, false)}
+      {/* {btn('Image', addImage, false)} */}
+      {btn('Image', () => setShowImageModal(true), false)}
+      {showImageModal && <ImageUploadModal onInsert={handleImageInsert} onClose={() => setShowImageModal(false)} />}
       {btn('∑ Equation', addEquation, false)}
       {allowVideo && btn('▶ Video', addVideo, false)}
       <span style={{ marginLeft: 8, marginRight: 4, color: '#ccc' }}>|</span>
@@ -115,8 +129,8 @@ const BlockEditorInstance = ({ content, onChange, allowVideo = false }) => {
       Underline,
       Heading.configure({ levels: [1, 2, 3] }),
       Link.configure({ openOnClick: false }),
+      CustomImageExtension,
       EquationExtension,
-      Image,
       VideoExtension,
       TextAlign.configure({ types: ['heading', 'paragraph'] })
     ],
