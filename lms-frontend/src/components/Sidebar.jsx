@@ -7,6 +7,7 @@ const teacherLinks = [
   { to: '/teacher/diagnostic', label: 'Tests' },
   { to: '/teacher/students', label: 'Students' },
   { to: '/teacher/media', label: 'Media' },
+  { to: '/teacher/about', label: 'About' },
 ]
 
 const studentLinks = [
@@ -14,6 +15,7 @@ const studentLinks = [
   { to: '/student/modules', label: 'Modules' },
   { to: '/student/media', label: 'Media' },
   { to: '/student/posttest', label: 'Post Test' },
+  { to: '/student/about', label: 'About' },
 ]
 
 const Sidebar = () => {

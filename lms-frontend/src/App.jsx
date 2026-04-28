@@ -18,6 +18,7 @@ import TeacherMediaPage from './pages/TeacherMediaPage'
 import TeacherDiagnosticPage from './pages/TeacherDiagnosticPage'
 import TeacherDiagnosticEditPage from './pages/TeacherDiagnosticEditPage'
 import TeacherStudentPage from './pages/TeacherStudentPage'
+import AboutPage from './pages/AboutPage'
 
 const App = () => {
   return (
@@ -44,6 +45,10 @@ const App = () => {
           <Route path="/student/posttest" element={
             <StudentRoute><PostTestPage /></StudentRoute>
           } />
+          <Route path="/student/about" element={
+            <StudentRoute><AboutPage /></StudentRoute>
+          } />
+          
 
           {/* Teacher routes */}
           <Route path="/teacher/dashboard" element={
@@ -69,6 +74,9 @@ const App = () => {
           } />
           <Route path="/teacher/students" element={
             <TeacherRoute><TeacherStudentPage /></TeacherRoute>
+          } />
+          <Route path="/teacher/about" element={
+            <TeacherRoute><AboutPage /></TeacherRoute>
           } />
         </Routes>
       </AuthProvider>
