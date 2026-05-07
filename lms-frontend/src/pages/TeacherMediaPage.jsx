@@ -24,7 +24,7 @@ const TeacherMediaPage = () => {
       Underline,
       Heading.configure({ levels: [1, 2, 3] }),
       Link.configure({ openOnClick: false }),
-      Image,
+      CustomImageExtension,
       EquationExtension,
       VideoExtension,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
