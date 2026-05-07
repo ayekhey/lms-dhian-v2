@@ -2,28 +2,25 @@ import PageLayout from '../components/PageLayout'
 
 const team = [
   {
-    name: 'Developer One',
-    role: 'Developer',
-    faculty: 'Faculty Name',
-    university: 'University Name',
+    name: 'Dhian Andriani',
+    faculty: 'Magister Pendidikan Fisika',
+    university: 'Universitas Negeri Jakarta',
     color: '#3b3b5c',
-    image: null
+    image: '/public/dhian.png'
   },
   {
-    name: 'Developer Two',
-    role: 'Developer',
-    faculty: 'Faculty Name',
-    university: 'University Name',
+    name: 'Dr. rer. nat. Bambang Heru Iswanto, M.Si',
+    faculty: 'Magister Pendidikan Fisika',
+    university: 'Universitas Negeri Jakarta',
     color: '#1565c0',
-    image: null
+    image: '/public/bambang.png'
   },
   {
-    name: 'Developer Three',
-    role: 'Developer',
-    faculty: 'Faculty Name',
-    university: 'University Name',
+    name: 'Prof. Dr. Esmar Budi, S.Si,. M.T',
+    faculty: 'Magister Pendidikan Fisika',
+    university: 'Universitas Negeri Jakarta',
     color: '#2e7d32',
-    image: null
+    image: '/public/esmar.png'
   }
 ]
 
