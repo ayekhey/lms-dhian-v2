@@ -2,7 +2,7 @@ import PageLayout from '../components/PageLayout'
 
 const team = [
   {
-    name: 'Dhian Andriani',
+    name: 'Bu Dhian Andriani',
     faculty: 'Magister Pendidikan Fisika',
     university: 'Universitas Negeri Jakarta',
     color: '#3b3b5c',
