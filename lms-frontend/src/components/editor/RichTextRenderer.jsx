@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { generateHTML } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
-// import Image from '@tiptap/extension-image'
+import Image from '@tiptap/extension-image'
 import CustomImageExtension from './CustomImageExtension'
 import EquationExtension from './EquationExtension'
 import katex from 'katex'
@@ -12,7 +12,7 @@ import TextAlign from '@tiptap/extension-text-align'
 const extensions = [
   StarterKit,
   Underline,
-  // Image,
+  Image,
   CustomImageExtension,
   EquationExtension,
   TextAlign.configure({ types: ['heading', 'paragraph'] }),
